@@ -1,0 +1,29 @@
+.content-padding {
+  padding: calc(var(--bs-gutter-x) / 2);
+}
+.maze-flix-logo {
+  color: #dc3545;
+  font-size: x-large;
+  cursor: pointer;
+}
+.user-name {
+  padding: 0 10px;
+}
+.guest-icon {
+  vertical-align: middle;
+}
+.bi-person-circle::before {
+  font-size: 35px;
+}
+.invalid-show::placeholder {
+  color: #dc3545;
+  opacity: 1; /* Firefox */
+}
+.invalid-show:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: #dc3545;
+}
+.invalid-show::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: #dc3545;
+}

@@ -1,0 +1,26 @@
+/* You can add global styles to this file, and also import other style files */
+body {
+  margin: 0;
+}
+:root {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+::-webkit-scrollbar {
+  display: none;
+}
+.text-center {
+  text-align: center !important;
+}
+.text-right {
+  text-align: right !important;
+}
+.carousel-section {
+  box-sizing: border-box !important;
+}
+.primary-bg-color {
+  background-color: #141414;
+}
+.secondary-bg-color {
+  background-color: #2e2e2e;
+}
