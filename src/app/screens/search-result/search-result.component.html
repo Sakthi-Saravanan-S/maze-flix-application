@@ -1,0 +1,22 @@
+<app-header
+  #headerComponent
+  (onShowSearched)="getRequestedShowDetails($event)"
+></app-header>
+<div class="search-result-container container-fluid">
+  <div class="row">
+    <div class="result-title col-12">
+      <label>Results for "{{ searchedShowName }}"</label>
+    </div>
+  </div>
+  <div class="row">
+    <div
+      *ngFor="let showInfo of searchResultList"
+      class="show-info col-12 col-sm-6 col-md-3 col-lg-2"
+      [id]="'showInfo_' + carouselId"
+      (click)="onTvShowClick(showInfo)"
+    >
+      <img [src]="showInfo.show?.image?.medium" alt="Image not found" />
+      <label class="description">{{ showInfo.show.name }}</label>
+    </div>
+  </div>
+</div>

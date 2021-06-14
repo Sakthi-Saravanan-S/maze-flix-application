@@ -11,6 +11,7 @@ import { ShowDetailsComponent } from './screens/show-details/show-details.compon
 import { MazeFlixConstants } from './constants/maze-flix.constants';
 import { CarouselComponent } from './shared/carousel/carousel.component';
 import { MazeFlixService } from './service/maze-flix.service';
+import { SearchResultComponent } from './screens/search-result/search-result.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { MazeFlixService } from './service/maze-flix.service';
     HeaderComponent,
     DashboardComponent,
     ShowDetailsComponent,
-    CarouselComponent
+    CarouselComponent,
+    SearchResultComponent
   ],
   imports: [
     BrowserModule,

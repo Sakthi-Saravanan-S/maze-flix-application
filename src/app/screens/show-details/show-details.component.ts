@@ -13,15 +13,16 @@ export class ShowDetailsComponent implements OnInit, OnDestroy {
     private _activatedRoute: ActivatedRoute,
     private _router: Router
   ) {}
-  getRequestedShowDetails(showName: string): void {}
+  getRequestedShowDetails(showInfo: any[]): void {}
   ngOnInit(): void {
     this.routeSubscription = this._activatedRoute.paramMap.subscribe(() => {
       const navData = window.history.state;
-      if (navData && (navData.showName || navData.showId))
-        this.getRequestedShowDetails(navData.showName);
-      else this._router.navigate(['']);
+      if (navData && navData.showInfo) {
+        this.getRequestedShowDetails(navData.showInfo);
+      } else this._router.navigate(['']);
     });
   }
+
   ngOnDestroy(): void {
     if (this.routeSubscription) this.routeSubscription.unsubscribe();
   }

@@ -2,17 +2,18 @@
   <div class="carousel-title">{{ carouselTitle }}</div>
   <button
     type="button"
-    [id]="'moveLeft' + carouselId"
+    [id]="'btnLeft_' + carouselId"
     (click)="onLeftClick()"
     class="slider-btn btn-left"
   >
     <i class="bi bi-chevron-left"></i>
   </button>
-  <div (click)="onTvShowClick()" class="slider" [id]="'mySlider' + carouselId">
+  <div class="slider" [id]="'slider_' + carouselId">
     <div
       *ngFor="let showInfo of showList"
-      class="movie"
-      [id]="'movie' + carouselId"
+      class="show-info"
+      [id]="'showInfo_' + carouselId"
+      (click)="onTvShowClick(showInfo)"
     >
       <img [src]="showInfo.image.original" />
       <div class="description">
@@ -22,7 +23,7 @@
   </div>
   <button
     type="button"
-    [id]="'moveRight' + carouselId"
+    [id]="'btnRight_' + carouselId"
     (click)="onRightClick()"
     class="slider-btn btn-right"
   >

@@ -23,17 +23,23 @@ export class HeaderComponent implements OnInit {
       showName: new FormControl('', Validators.required),
     });
   }
+  setFormValue(showName: string): void {
+    setTimeout(() => {
+      this.showSearchForm.controls.showName.setValue(showName);
+    });
+  }
   onMazeLogoClick(): void {
     this._router.navigate(['']);
   }
   onShowNameChange(): void {
-    this.isFormHasError = false;
+    if (this.showSearchForm.controls.showName.touched)
+      this.isFormHasError = false;
   }
   onSubmit(): void {
     if (this.showSearchForm.valid) {
       this.isFormHasError = false;
       const showName = this.showSearchForm.getRawValue().showName;
-      this._router.navigateByUrl('/show-details', {
+      this._router.navigateByUrl('/search-results', {
         state: { showName: showName },
       });
       this.onShowSearched.emit(showName);

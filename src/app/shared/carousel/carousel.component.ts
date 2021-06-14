@@ -16,9 +16,9 @@ export class CarouselComponent implements OnInit {
   ) {}
   showList: any[] = [];
   ngOnInit(): void {}
-  onTvShowClick(): void {
+  onTvShowClick(showInfo: any[]): void {
     this._router.navigateByUrl('/show-details', {
-      state: { showId: 'showName' },
+      state: { showInfo: showInfo },
     });
   }
   setCarousalInfo(showList: any): void {
@@ -26,7 +26,7 @@ export class CarouselComponent implements OnInit {
     this.showList = JSON.parse(JSON.stringify(showList));
   }
   onLeftClick(): void {
-    const slider = document.getElementById('mySlider' + this.carouselId);
+    const slider = document.getElementById('slider_' + this.carouselId);
     slider.scrollBy({
       top: this.mazeFlixConstants.NUMBER_0,
       left: -this.getScrollWidth(),
@@ -34,7 +34,7 @@ export class CarouselComponent implements OnInit {
     });
   }
   onRightClick(): void {
-    const slider = document.getElementById('mySlider' + this.carouselId);
+    const slider = document.getElementById('slider_' + this.carouselId);
     slider.scrollBy({
       top: this.mazeFlixConstants.NUMBER_0,
       left: +this.getScrollWidth(),
@@ -43,7 +43,7 @@ export class CarouselComponent implements OnInit {
   }
   getScrollWidth(): number {
     let movieWidth = document
-      .querySelector('.movie')
+      .querySelector('.show-info')
       .getBoundingClientRect().width;
     switch (true) {
       case movieWidth * this.mazeFlixConstants.NUMBER_6 < window.innerWidth:

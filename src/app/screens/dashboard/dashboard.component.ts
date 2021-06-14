@@ -40,7 +40,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
       .getShowsInfoByPage(this._mazeFlixConstants.NUMBER_1)
       .subscribe(
         (result: any[]) => {
-          let updData = [];
           result.sort(
             (a: any, b: any) => b.rating?.average - a.rating?.average
           );
@@ -53,7 +52,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
             this.generateShowsByGeneres(result, 'Science-Fiction')
           );
           this.genre2Carousel.setCarousalInfo(
-            this.generateShowsByGeneres(result, 'Horror')
+            this.generateShowsByGeneres(result, 'Mystery')
           );
           this.genre3Carousel.setCarousalInfo(
             this.generateShowsByGeneres(result, 'Crime')

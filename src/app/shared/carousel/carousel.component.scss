@@ -2,7 +2,6 @@
   position: relative;
   .carousel-title {
     position: absolute;
-    color: #fff;
     padding: 1.5rem 4rem;
     font-weight: 600;
     font-size: x-large;
@@ -17,13 +16,12 @@
     position: relative;
     padding-top: 80px;
     padding-bottom: 30px;
-    .movie {
+    .show-info {
       width: 15.5vw;
       cursor: pointer;
       height: 200px;
       display: inline-block;
       position: relative;
-      color: #fff;
       padding: 0 5px;
       font-size: 0.8rem;
       transition: all 450ms ease-in-out;
@@ -34,35 +32,35 @@
         border-radius: 10px;
       }
     }
-    .movie:hover {
+    .show-info:hover {
       transform: scale(1.2);
       transition: 450ms ease-out all;
       z-index: 2;
       opacity: 1;
     }
-    .movie:first-child {
+    .show-info:first-child {
       margin-left: 50px;
     }
-    .movie:last-child {
+    .show-info:last-child {
       margin-right: 50px;
     }
-    .movie:hover > .description {
+    .show-info:hover > .description {
       bottom: 0;
-      transition: 450ms ease-out all;
+      transition: 900ms ease-in;
       display: block;
     }
     @media only screen and (max-width: 992px) {
-      .movie {
+      .show-info {
         width: 22.5vw;
       }
     }
     @media only screen and (max-width: 768px) {
-      .movie {
+      .show-info {
         width: 45vw;
       }
     }
     @media only screen and (max-width: 576px) {
-      .movie {
+      .show-info {
         width: 80vw;
       }
     }
