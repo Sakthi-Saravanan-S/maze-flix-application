@@ -1,106 +1,109 @@
-.carousel-title {
-  position: absolute;
-  color: #fff;
-  padding: 1.5rem 3rem;
-  font-weight: 600;
-  font-size: x-large;
-}
 .carousal-container {
   position: relative;
-}
-.slider {
-  width: 100%;
-  overflow-x: scroll;
-  overflow-y: visible;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-  white-space: nowrap;
-  position: relative;
-  padding-top: 80px;
-  padding-bottom: 50px;
-}
-.movie {
-  width: 15.5vw;
-  cursor: pointer;
-  height: 200px;
-  display: inline-block;
-  position: relative;
-  color: white;
-  padding: 0 5px;
-  font-size: 0.8rem;
-  transition: all 450ms  ease-in-out;
-}
+  .carousel-title {
+    position: absolute;
+    color: #fff;
+    padding: 1.5rem 4rem;
+    font-weight: 600;
+    font-size: x-large;
+  }
+  .slider {
+    width: 100%;
+    overflow-x: scroll;
+    overflow-y: visible;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    white-space: nowrap;
+    position: relative;
+    padding-top: 80px;
+    padding-bottom: 50px;
+    .movie {
+      width: 15.5vw;
+      cursor: pointer;
+      height: 200px;
+      display: inline-block;
+      position: relative;
+      color: #fff;
+      padding: 0 5px;
+      font-size: 0.8rem;
+      transition: all 450ms ease-in-out;
+      img {
+        object-fit: cover;
+        height: 100%;
+        width: 100%;
+        border-radius: 10px;
+      }
+    }
+    .movie:hover {
+      transform: scale(1.2);
+      transition: 450ms ease-out all;
+      z-index: 2;
+      opacity: 1;
+    }
+    .movie:nth-of-type(1) {
+      margin-left: 50px;
+      .btn-left {
+        visibility: hidden !important;
+      }
+    }
+    .movie:hover > .description {
+      display: block;
+    }
+    .movie:hover > img {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+    @media only screen and (max-width: 992px) {
+      .movie {
+        width: 22.5vw;
+      }
+    }
+    @media only screen and (max-width: 768px) {
+      .movie {
+        width: 45vw;
+      }
+    }
+    @media only screen and (max-width: 576px) {
+      .movie {
+        width: 80vw;
+      }
+    }
+  }
 
-.movie:nth-of-type(1) {
-  margin-left: var(--arrow-width);
-}
-
-.movie img {
-  object-fit: cover;
-  height: 100%;
-  width: 100%;
-  border-radius: 10px;
-}
-@media only screen and (max-width: 1000px) {
-  .movie {
-    width: 25vw;
+  .slider-btn {
+    width: 50px;
+    height: 200px;
+    border-radius: 5px;
+    position: absolute;
+    bottom: 0;
+    background-color: #0000004d;
+    outline: none;
+    border: none;
+    color: #fff;
+    top: 80px;
+    z-index: 20;
+    visibility: hidden;
+    font-weight: 900;
+    font-size: 35px;
+  }
+  .btn-right {
+    right: 0px;
+  }
+  .btn-left {
+    left: 0px;
+  }
+  .description {
+    position: absolute;
+    display: none;
+    z-index: 1;
+    width: 200px;
+    margin-top: -10px;
+    padding: 10px 0;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
   }
 }
-
-.movie:hover {
-  -ms-transform: scale(1.2);
-  -webkit-transform: scale(1.2);  
-  transform: scale(1.2);
-  transition: 450ms ease-out all;
-  z-index: 2;
-  opacity: 1;
-}
-/* Make description visible when movie is hovered */
-.movie:hover .description {
-  display: block;
-}
-.movie:hover > img {
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-}
-
-.carousal-container:hover .btn-nav,
-.carousal-container:hover .container-indicators {
+.carousal-container:hover .slider-btn,
+.carousal-container:hover  {
   visibility: visible;
-}
-
-::-webkit-scrollbar {
-  display: none;
-}
-.btn-nav {
-  width: 50px;
-  height: 200px;
-  border-radius: 5px;
-  position: absolute;
-  bottom: 0;
-  background-color: #0000004d;
-  outline: none;
-  border: none;
-  color: white;
-  top: 80px;
-  z-index: 20;
-  visibility: hidden;
-  font-weight: 900;
-  font-size: 35px;
-}
-.btn-right {
-  right: 0px;
-}
-.btn-left {
-  left: 0px;
-}
-.description {
-  position: absolute;
-  display: none;
-  z-index: 1;
-  width: 200px;
-  margin-top: -10px;
-  padding: 10px 0;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
 }

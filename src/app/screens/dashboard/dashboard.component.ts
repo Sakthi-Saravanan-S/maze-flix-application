@@ -13,7 +13,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     private _mazeFlixService: MazeFlixService,
     private _mazeFlixConstants: MazeFlixConstants
   ) {}
-  recordsSubscription?: Subscription;
+  recordsSubscription: Subscription;
   sliderScrollLeft(): void {}
   sliderScrollRight(): void {}
   ngOnInit(): void {

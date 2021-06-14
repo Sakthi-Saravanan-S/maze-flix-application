@@ -76,52 +76,37 @@ export class CarouselComponent implements OnInit {
   onLeftClick(): void {
     const btnLeft = document.getElementById('moveLeft' + this.carouselId);
     const slider = document.getElementById('mySlider' + this.carouselId);
-    btnLeft.addEventListener('click', (e) => {
-      let movieWidth = document
-        .querySelector('.movie')
-        .getBoundingClientRect().width;
-      let scrollDistance = movieWidth * 6; // Scroll the length of 6 movies. TODO: make work for mobile because (4 movies/page instead of 6)
-
-      slider.scrollBy({
-        top: 0,
-        left: -scrollDistance,
-        behavior: 'smooth',
-      });
-      this.activeIndex = (this.activeIndex - 1) % 3;
-      console.log(this.activeIndex);
+    slider.scrollBy({
+      top: 0,
+      left: -this.getScrollWidth(),
+      behavior: 'smooth',
     });
   }
   onRightClick(): void {
     const btnRight = document.getElementById('moveRight' + this.carouselId);
     const slider = document.getElementById('mySlider' + this.carouselId);
-    btnRight.addEventListener('click', (e) => {
-      let movieWidth = document
-        .querySelector('.movie')
-        .getBoundingClientRect().width;
-      let scrollDistance = movieWidth * 6; // Scroll the length of 6 movies. TODO: make work for mobile because (4 movies/page instead of 6)
-
-      console.log(`movieWidth = ${movieWidth}`);
-      console.log(`scrolling right ${scrollDistance}`);
-
-      // if we're on the last page
-      if (this.activeIndex == 2) {
-        // duplicate all the items in the slider (this is how we make 'looping' slider)
-        // this.populateSlider();
-        slider.scrollBy({
-          top: 0,
-          left: +scrollDistance,
-          behavior: 'smooth',
-        });
-        this.activeIndex = 0;
-      } else {
-        slider.scrollBy({
-          top: 0,
-          left: +scrollDistance,
-          behavior: 'smooth',
-        });
-        this.activeIndex = (this.activeIndex + 1) % 3;
-        console.log(this.activeIndex);
-      }
+    slider.scrollBy({
+      top: 0,
+      left: +this.getScrollWidth(),
+      behavior: 'smooth',
     });
+  }
+  getScrollWidth(): number {
+    let movieWidth = document
+      .querySelector('.movie')
+      .getBoundingClientRect().width;
+    switch (true) {
+      case movieWidth * 6 < window.innerWidth:
+        return movieWidth * 6;
+      case movieWidth * 4 < window.innerWidth:
+        return movieWidth * 4;
+      case movieWidth * 2 < window.innerWidth:
+        return movieWidth * 2;
+      case movieWidth < window.innerWidth:
+        return movieWidth;
+
+      default:
+        return 0;
+    }
   }
 }

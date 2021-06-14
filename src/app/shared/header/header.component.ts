@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
   @Output() onShowSearched: EventEmitter<string> = new EventEmitter();
-  showSearchForm!: FormGroup;
+  showSearchForm: FormGroup;
   isFormHasError: boolean = false;
   constructor(private _formBuilder: FormBuilder, private _router: Router) {}
   ngOnInit(): void {

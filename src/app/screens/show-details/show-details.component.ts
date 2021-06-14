@@ -8,11 +8,11 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./show-details.component.scss'],
 })
 export class ShowDetailsComponent implements OnInit, OnDestroy {
-  routeSubscription?: Subscription;
-  constructor(public activatedRoute: ActivatedRoute, private _router: Router) {}
+  routeSubscription: Subscription;
+  constructor(private _activatedRoute: ActivatedRoute, private _router: Router) {}
   getRequestedShowDetails(showName: string): void {}
   ngOnInit(): void {
-    this.routeSubscription = this.activatedRoute.paramMap.subscribe(() => {
+    this.routeSubscription = this._activatedRoute.paramMap.subscribe(() => {
       const navData = window.history.state;
       if (navData && navData.showName)
         this.getRequestedShowDetails(navData.showName);
