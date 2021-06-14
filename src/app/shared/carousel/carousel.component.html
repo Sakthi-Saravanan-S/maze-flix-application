@@ -8,117 +8,15 @@
   >
     <i class="bi bi-chevron-left"></i>
   </button>
-  <div class="slider" [id]="'mySlider' + carouselId">
-    <div class="movie" [id]="'movie' + carouselId">
-      <img
-        src="https://static.tvmaze.com/uploads/images/original_untouched/4/10448.jpg"
-      />
+  <div (click)="onTvShowClick()" class="slider" [id]="'mySlider' + carouselId">
+    <div
+      *ngFor="let showInfo of showList"
+      class="movie"
+      [id]="'movie' + carouselId"
+    >
+      <img [src]="showInfo.image.original" />
       <div class="description">
-        <div class="tile-title">Top Gear</div>
-      </div>
-    </div>
-    <div class="movie" [id]="'movie' + carouselId">
-      <img
-        src="https://static.tvmaze.com/uploads/images/original_untouched/4/10448.jpg"
-      />
-      <div class="description">
-        <div class="tile-title">Top Gear</div>
-      </div>
-    </div>
-    <div class="movie" [id]="'movie' + carouselId">
-      <img
-        src="https://static.tvmaze.com/uploads/images/original_untouched/4/10448.jpg"
-      />
-      <div class="description">
-        <div class="tile-title">Top Gear</div>
-      </div>
-    </div>
-    <div class="movie" [id]="'movie' + carouselId">
-      <img
-        src="https://static.tvmaze.com/uploads/images/original_untouched/4/10448.jpg"
-      />
-      <div class="description">
-        <div class="tile-title">Top Gear</div>
-      </div>
-    </div>
-    <div class="movie" [id]="'movie' + carouselId">
-      <img
-        src="https://static.tvmaze.com/uploads/images/original_untouched/4/10448.jpg"
-      />
-      <div class="description">
-        <div class="tile-title">Top Gear</div>
-      </div>
-    </div>
-    <div class="movie" [id]="'movie' + carouselId">
-      <img
-        src="https://static.tvmaze.com/uploads/images/original_untouched/4/10448.jpg"
-      />
-      <div class="description">
-        <div class="tile-title">Top Gear</div>
-      </div>
-    </div>
-    <div class="movie" [id]="'movie' + carouselId">
-      <img
-        src="https://static.tvmaze.com/uploads/images/original_untouched/4/10448.jpg"
-      />
-      <div class="description">
-        <div class="tile-title">Top Gear</div>
-      </div>
-    </div>
-    <div class="movie" [id]="'movie' + carouselId">
-      <img
-        src="https://static.tvmaze.com/uploads/images/original_untouched/4/10448.jpg"
-      />
-      <div class="description">
-        <div class="tile-title">Top Gear</div>
-      </div>
-    </div>
-    <div class="movie" [id]="'movie' + carouselId">
-      <img
-        src="https://static.tvmaze.com/uploads/images/original_untouched/4/10448.jpg"
-      />
-      <div class="description">
-        <div class="tile-title">Top Gear</div>
-      </div>
-    </div>
-    <div class="movie" [id]="'movie' + carouselId">
-      <img
-        src="https://static.tvmaze.com/uploads/images/original_untouched/4/10448.jpg"
-      />
-      <div class="description">
-        <div class="tile-title">Top Gear</div>
-      </div>
-    </div>
-    <div class="movie" [id]="'movie' + carouselId">
-      <img
-        src="https://static.tvmaze.com/uploads/images/original_untouched/4/10448.jpg"
-      />
-      <div class="description">
-        <div class="tile-title">Top Gear</div>
-      </div>
-    </div>
-    <div class="movie" [id]="'movie' + carouselId">
-      <img
-        src="https://static.tvmaze.com/uploads/images/original_untouched/4/10448.jpg"
-      />
-      <div class="description">
-        <div class="tile-title">Top Gear</div>
-      </div>
-    </div>
-    <div class="movie" [id]="'movie' + carouselId">
-      <img
-        src="https://static.tvmaze.com/uploads/images/original_untouched/4/10448.jpg"
-      />
-      <div class="description">
-        <div class="tile-title">Top Gear</div>
-      </div>
-    </div>
-    <div class="movie" [id]="'movie' + carouselId">
-      <img
-        src="https://static.tvmaze.com/uploads/images/original_untouched/4/10448.jpg"
-      />
-      <div class="description">
-        <div class="tile-title">Top Gear</div>
+        <label class="tile-title">{{ showInfo.name }}</label>
       </div>
     </div>
   </div>

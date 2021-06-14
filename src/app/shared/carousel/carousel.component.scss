@@ -16,7 +16,7 @@
     white-space: nowrap;
     position: relative;
     padding-top: 80px;
-    padding-bottom: 50px;
+    padding-bottom: 30px;
     .movie {
       width: 15.5vw;
       cursor: pointer;
@@ -40,18 +40,16 @@
       z-index: 2;
       opacity: 1;
     }
-    .movie:nth-of-type(1) {
+    .movie:first-child {
       margin-left: 50px;
-      .btn-left {
-        visibility: hidden !important;
-      }
+    }
+    .movie:last-child {
+      margin-right: 50px;
     }
     .movie:hover > .description {
+      bottom: 0;
+      transition: 450ms ease-out all;
       display: block;
-    }
-    .movie:hover > img {
-      border-bottom-left-radius: 0;
-      border-bottom-right-radius: 0;
     }
     @media only screen and (max-width: 992px) {
       .movie {
@@ -96,14 +94,21 @@
     position: absolute;
     display: none;
     z-index: 1;
-    width: 200px;
-    margin-top: -10px;
-    padding: 10px 0;
+    width: 96%;
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.9) 0%,
+      rgba(0, 0, 0, 0) 100%
+    );
+    padding: 10px;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
+    .tile-title{
+      white-space: normal;
+    }
   }
 }
 .carousal-container:hover .slider-btn,
-.carousal-container:hover  {
+.carousal-container:hover {
   visibility: visible;
 }

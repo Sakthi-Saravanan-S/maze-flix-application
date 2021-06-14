@@ -10,4 +10,5 @@ export class MazeFlixConstants {
   readonly NUMBER_8: number = 8;
   readonly NUMBER_9: number = 9;
   readonly NUMBER_10: number = 10;
+  readonly SLIDER_LIMIT: number = 48;
 }
