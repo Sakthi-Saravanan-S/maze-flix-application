@@ -12,7 +12,7 @@
       <span>{{ showDetail?.runtime }}&nbsp;Min</span>
       <span>{{ showDetail?.premiered | date: "yyyy" }}</span>
     </div>
-    <div [innerHTML]="showDetail?.summary"></div>
+    <div class="text-justify" [innerHTML]="showDetail?.summary"></div>
     <div class="icons-section">
       <span>
         <i class="bi bi-play-circle"></i>
