@@ -9,8 +9,8 @@ export class MazeFlixService {
   constructor(private _http: HttpClient) {}
   private baseUrl: string = 'http://api.tvmaze.com/';
 
-  getShowsInfoByPage(pageNumber: number): Observable<any> {
-    return this._http.get(this.baseUrl + 'shows?page=' + pageNumber);
+  getTvShowsInfo(): Observable<any> {
+    return this._http.get(this.baseUrl + 'shows');
   }
   getRequestedShowInfo(showName: string): Observable<any> {
     return this._http.get(this.baseUrl + 'search/shows?q=' + showName);

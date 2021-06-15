@@ -37,7 +37,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
   ngOnInit(): void {
     this.recordsSubscription = this._mazeFlixService
-      .getShowsInfoByPage(this._mazeFlixConstants.NUMBER_1)
+      .getTvShowsInfo()
       .subscribe(
         (result: any[]) => {
           result.sort(

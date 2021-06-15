@@ -9,17 +9,20 @@ import { Subscription } from 'rxjs';
 })
 export class ShowDetailsComponent implements OnInit, OnDestroy {
   routeSubscription: Subscription;
+  showDetail: any = null;
   constructor(
     private _activatedRoute: ActivatedRoute,
     private _router: Router
   ) {}
-  getRequestedShowDetails(showInfo: any[]): void {}
+  getRequestedShowDetails(showInfo: any): void {
+    this.showDetail = JSON.parse(JSON.stringify(showInfo));
+  }
   ngOnInit(): void {
     this.routeSubscription = this._activatedRoute.paramMap.subscribe(() => {
       const navData = window.history.state;
-      if (navData && navData.showInfo) {
+      if (navData && navData.showInfo)
         this.getRequestedShowDetails(navData.showInfo);
-      } else this._router.navigate(['']);
+      else this._router.navigate(['']);
     });
   }
 
