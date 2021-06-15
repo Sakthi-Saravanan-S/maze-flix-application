@@ -20,7 +20,7 @@
       }
     }
     .show-info-1 {
-      margin-bottom: 1rem;
+      margin-bottom: 2rem;
       color: #c3c3c3cf;
       span {
         padding-right: 2rem;
@@ -62,18 +62,21 @@
     z-index: -5;
   }
   img {
-    width: 50vw;
-    height: 80vh;
+    width: 45vw;
+    height: 90vh;
   }
   @media only screen and (max-width: 768px) {
     img {
-      width: 100vw;
+      width: 80vw;
     }
     .details-section {
       width: 100%;
     }
   }
-  @media only screen and (max-width: 992px) {
+  @media only screen and (min-width: 769px) and (max-width: 992px) {
+    img {
+      width: 60vw;
+    }
     .details-section {
       width: 80%;
     }

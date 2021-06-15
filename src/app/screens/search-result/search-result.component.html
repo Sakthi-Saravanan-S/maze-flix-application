@@ -11,12 +11,19 @@
   <div class="row">
     <div
       *ngFor="let showInfo of searchResultList"
-      class="show-info col-12 col-sm-6 col-md-3 col-lg-2"
+      class="col-12 col-sm-6 col-md-3 col-lg-2"
       [id]="'showInfo_' + carouselId"
       (click)="onTvShowClick(showInfo.show)"
     >
-      <img [src]="showInfo.show?.image?.medium" />
-      <label class="description">{{ showInfo.show.name }}</label>
+      <div class="show-info">
+        <img [src]="showInfo.show?.image?.medium" />
+        <div class="gradient-container">
+          <div class="play-button">
+            <i class="bi bi-play-circle-fill"></i>
+          </div>
+          <span class="description">{{ showInfo.show.name }}</span>
+        </div>
+      </div>
     </div>
   </div>
 </div>

@@ -32,6 +32,20 @@
     </div>
     <div class="show-info-2">
       <dl>
+        <dt>Starring</dt>
+        <dd>
+          <span *ngFor="let castInfo of castDetail; let last = last">
+            {{ castInfo.person.name }}{{ last ? "." : "," }}
+          </span>
+        </dd>
+      </dl>
+      <dl>
+        <dt>Language</dt>
+        <dd>
+          {{ showDetail?.language }}
+        </dd>
+      </dl>
+      <dl>
         <dt>Genre</dt>
         <dd>
           <span *ngFor="let genreInfo of showDetail.genres; let last = last">
@@ -40,9 +54,15 @@
         </dd>
       </dl>
       <dl>
-        <dt>Language</dt>
+        <dt>Type</dt>
         <dd>
-          {{ showDetail?.language }}
+          {{ showDetail?.type }}
+        </dd>
+      </dl>
+      <dl>
+        <dt>Status</dt>
+        <dd>
+          {{ showDetail?.status }}
         </dd>
       </dl>
     </div>
