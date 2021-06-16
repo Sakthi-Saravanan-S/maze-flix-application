@@ -17,16 +17,14 @@ export class HeaderComponent implements OnInit {
   @Output() onShowSearched: EventEmitter<string> = new EventEmitter();
   showSearchForm: FormGroup;
   isFormHasError: boolean = false;
-  constructor(private _formBuilder: FormBuilder, private _router: Router) {}
+  constructor(public _formBuilder: FormBuilder, private _router: Router) {}
   ngOnInit(): void {
     this.showSearchForm = this._formBuilder.group({
       showName: new FormControl('', Validators.required),
     });
   }
   setFormValue(showName: string): void {
-    setTimeout(() => {
-      this.showSearchForm.controls.showName.setValue(showName);
-    });
+    this.showSearchForm.controls.showName.setValue(showName);
   }
   onMazeLogoClick(): void {
     this._router.navigate(['']);

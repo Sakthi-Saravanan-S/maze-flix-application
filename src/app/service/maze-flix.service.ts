@@ -18,7 +18,4 @@ export class MazeFlixService {
   getCastInfo(showId: string): Observable<any> {
     return this._http.get(this.baseUrl + 'shows/' + showId + '/cast');
   }
-  getCrewInfo(showId: string): Observable<any> {
-    return this._http.get(this.baseUrl + 'shows/' + showId + '/crew');
-  }
 }

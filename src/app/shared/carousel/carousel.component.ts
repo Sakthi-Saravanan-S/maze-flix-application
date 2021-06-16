@@ -15,31 +15,33 @@ export class CarouselComponent implements OnInit {
     private _router: Router
   ) {}
   showList: any[] = [];
-  ngOnInit(): void {}
-  onTvShowClick(showInfo: any[]): void {
-    this._router.navigateByUrl('/show-details', {
-      state: { showInfo: showInfo },
-    });
+  onTvShowClick(showInfo: any): void {
+    if (showInfo)
+      this._router.navigateByUrl('/show-details', {
+        state: { showInfo: showInfo },
+      });
   }
-  setCarousalInfo(showList: any): void {
+  setCarouselInfo(showList: any): void {
     this.showList = [];
     this.showList = JSON.parse(JSON.stringify(showList));
   }
   onLeftClick(): void {
     const slider = document.getElementById('slider_' + this.carouselId);
-    slider.scrollBy({
-      top: this.mazeFlixConstants.NUMBER_0,
-      left: -this.getScrollWidth(),
-      behavior: 'smooth',
-    });
+    if (slider)
+      slider.scrollBy({
+        top: this.mazeFlixConstants.NUMBER_0,
+        left: -this.getScrollWidth(),
+        behavior: 'smooth',
+      });
   }
   onRightClick(): void {
     const slider = document.getElementById('slider_' + this.carouselId);
-    slider.scrollBy({
-      top: this.mazeFlixConstants.NUMBER_0,
-      left: +this.getScrollWidth(),
-      behavior: 'smooth',
-    });
+    if (slider)
+      slider.scrollBy({
+        top: this.mazeFlixConstants.NUMBER_0,
+        left: +this.getScrollWidth(),
+        behavior: 'smooth',
+      });
   }
   getScrollWidth(): number {
     let movieWidth = document
@@ -59,4 +61,5 @@ export class CarouselComponent implements OnInit {
         return 0;
     }
   }
+  ngOnInit(): void {}
 }

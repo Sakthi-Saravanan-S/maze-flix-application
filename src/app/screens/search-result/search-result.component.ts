@@ -1,10 +1,4 @@
-import {
-  AfterViewInit,
-  Component,
-  OnDestroy,
-  OnInit,
-  ViewChild,
-} from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MazeFlixConstants } from 'src/app/constants/maze-flix.constants';
@@ -16,7 +10,7 @@ import { HeaderComponent } from 'src/app/shared/header/header.component';
   templateUrl: './search-result.component.html',
   styleUrls: ['./search-result.component.scss'],
 })
-export class SearchResultComponent implements OnInit {
+export class SearchResultComponent implements OnInit, OnDestroy {
   @ViewChild('headerComponent') headerComponent: HeaderComponent;
   routeSubscription: Subscription;
   showSearchSubscription: Subscription;
@@ -28,10 +22,11 @@ export class SearchResultComponent implements OnInit {
     private _mazeFlixService: MazeFlixService,
     private _mazeFlixConstants: MazeFlixConstants
   ) {}
-  onTvShowClick(showInfo: any[]): void {
-    this._router.navigateByUrl('/show-details', {
-      state: { showInfo: showInfo },
-    });
+  onTvShowClick(showInfo: any): void {
+    if (showInfo)
+      this._router.navigateByUrl('/show-details', {
+        state: { showInfo: showInfo },
+      });
   }
   getRequestedShowDetails(showName: string): void {
     this.showSearchSubscription = this._mazeFlixService
@@ -40,6 +35,7 @@ export class SearchResultComponent implements OnInit {
         (result: any[]) => {
           this.searchResultList = [];
           this.searchResultList = JSON.parse(JSON.stringify(result));
+          this.headerComponent.setFormValue(this.searchedShowName);
         },
         () => {}
       );
@@ -52,10 +48,6 @@ export class SearchResultComponent implements OnInit {
         this.getRequestedShowDetails(navData.showName);
       } else this._router.navigate(['']);
     });
-  }
-  ngAfterViewInit(): void {
-    if (this.searchedShowName)
-      this.headerComponent.setFormValue(this.searchedShowName);
   }
   ngOnDestroy(): void {
     if (this.routeSubscription) this.routeSubscription.unsubscribe();

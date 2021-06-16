@@ -48,7 +48,7 @@
       <dl>
         <dt>Genre</dt>
         <dd>
-          <span *ngFor="let genreInfo of showDetail.genres; let last = last">
+          <span *ngFor="let genreInfo of showDetail?.genres; let last = last">
             {{ genreInfo }}{{ last ? "." : "," }}
           </span>
         </dd>
