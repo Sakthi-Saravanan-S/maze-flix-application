@@ -30,14 +30,19 @@ export class SearchResultComponent implements OnInit, OnDestroy {
         state: { showInfo: showInfo },
       });
   }
-  getRequestedShowDetails(showName: string): void {
+  getRequestedShowDetails(
+    showName: string,
+    isNavigatedFromRouter?: boolean
+  ): void {
+    this.searchedShowName = showName;
     this.showSearchSubscription = this._mazeFlixService
       .getRequestedShowInfo(showName)
       .subscribe(
         (result: SearchListData[]) => {
           this.searchResultList = [];
           this.searchResultList = JSON.parse(JSON.stringify(result));
-          this.headerComponent.setFormValue(this.searchedShowName);
+          if (isNavigatedFromRouter)
+            this.headerComponent.setFormValue(this.searchedShowName);
         },
         () => {}
       );
@@ -47,7 +52,7 @@ export class SearchResultComponent implements OnInit, OnDestroy {
       const navData = window.history.state;
       if (navData && navData.showName) {
         this.searchedShowName = navData.showName;
-        this.getRequestedShowDetails(navData.showName);
+        this.getRequestedShowDetails(navData.showName, true);
       } else this._router.navigate(['']);
     });
   }

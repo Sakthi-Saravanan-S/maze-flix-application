@@ -16,7 +16,7 @@
       (click)="onTvShowClick(showInfo)"
     >
       <img [src]="showInfo.image.medium" />
-      <div class="gradient-container">
+      <div *ngIf="showInfo.image.medium" class="gradient-container">
         <div class="play-button">
           <i class="bi bi-play-circle-fill"></i>
         </div>
