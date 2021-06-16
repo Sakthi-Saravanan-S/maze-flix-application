@@ -14,13 +14,10 @@ export interface ShowListData {
   rating: Rating;
   weight: number;
   network: Network;
-  webChannel: any;
-  dvdCountry: any;
   externals: Externals;
   image: Image;
   summary: string;
   updated: number;
-  _links: Links;
 }
 
 export interface Schedule {
@@ -55,15 +52,7 @@ export interface Image {
   original: string;
 }
 
-export interface Links {
-  self: Self;
-  previousepisode: Previousepisode;
-}
-
 export interface Self {
   href: string;
 }
 
-export interface Previousepisode {
-  href: string;
-}

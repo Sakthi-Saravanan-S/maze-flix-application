@@ -2,6 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MazeFlixConstants } from 'src/app/constants/maze-flix.constants';
+import { CastListData } from 'src/app/model/cast-list-data.model';
+import { ShowListData } from 'src/app/model/show-list-data.model';
 import { MazeFlixService } from 'src/app/service/maze-flix.service';
 
 @Component({
@@ -12,20 +14,20 @@ import { MazeFlixService } from 'src/app/service/maze-flix.service';
 export class ShowDetailsComponent implements OnInit, OnDestroy {
   routeSubscription: Subscription;
   castDetailSubscription: Subscription;
-  showDetail: any = null;
-  castDetail: any[] = [];
+  showDetail: ShowListData;
+  castDetail: CastListData[] = [];
   constructor(
     private _activatedRoute: ActivatedRoute,
     private _router: Router,
     private _mazeFlixService: MazeFlixService,
     private _mazeFlixConstants: MazeFlixConstants
   ) {}
-  getRequestedShowDetails(showInfo: any): void {
+  getCastInfo(showInfo: ShowListData): void {
     this.showDetail = JSON.parse(JSON.stringify(showInfo));
     this.castDetailSubscription = this._mazeFlixService
       .getCastInfo(showInfo.id)
       .subscribe(
-        (result: any[]) => {
+        (result: CastListData[]) => {
           this.castDetail = result.slice(
             this._mazeFlixConstants.NUMBER_0,
             this._mazeFlixConstants.NUMBER_3
@@ -38,7 +40,7 @@ export class ShowDetailsComponent implements OnInit, OnDestroy {
     this.routeSubscription = this._activatedRoute.paramMap.subscribe(() => {
       const navData = window.history.state;
       if (navData && navData.showInfo)
-        this.getRequestedShowDetails(navData.showInfo);
+        this.getCastInfo(navData.showInfo);
       else this._router.navigate(['']);
     });
   }

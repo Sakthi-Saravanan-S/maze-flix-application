@@ -19,7 +19,7 @@ describe('MazeFlixService', () => {
   });
 
   it('Get data from default Tv show API', (done: DoneFn) => {
-    service.getTvShowsInfo().subscribe(
+    service.getDefaultTvShowsInfo().subscribe(
       (value) => {
         const recordsLength = value.length;
         expect(recordsLength).toBeGreaterThan(0);
@@ -46,7 +46,7 @@ describe('MazeFlixService', () => {
   });
 
   it('Get data from show cast info API', (done: DoneFn) => {
-    service.getCastInfo('169').subscribe(
+    service.getCastInfo(169).subscribe(
       (value) => {
         expect(value.length).toBeGreaterThan(0);
         done();

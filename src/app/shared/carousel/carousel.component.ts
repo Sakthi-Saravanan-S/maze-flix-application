@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MazeFlixConstants } from 'src/app/constants/maze-flix.constants';
+import { ShowListData } from 'src/app/model/show-list-data.model';
 
 @Component({
   selector: 'app-carousel',
@@ -14,14 +15,14 @@ export class CarouselComponent implements OnInit {
     public mazeFlixConstants: MazeFlixConstants,
     private _router: Router
   ) {}
-  showList: any[] = [];
-  onTvShowClick(showInfo: any): void {
+  showList: ShowListData[] = [];
+  onTvShowClick(showInfo: ShowListData): void {
     if (showInfo)
       this._router.navigateByUrl('/show-details', {
         state: { showInfo: showInfo },
       });
   }
-  setCarouselInfo(showList: any): void {
+  setCarouselInfo(showList: ShowListData[]): void {
     this.showList = [];
     this.showList = JSON.parse(JSON.stringify(showList));
   }

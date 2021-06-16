@@ -30,15 +30,51 @@ describe('ShowDetailsComponent', () => {
   it('should Should get data from API', (done: DoneFn) => {
     const fixture = TestBed.createComponent(ShowDetailsComponent);
     const component = fixture.componentInstance;
-    expect(component.getRequestedShowDetails("169"));
-    done();
-  });
-
-  it('should should successfully perform life cycle hook', (done: DoneFn) => {
-    const fixture = TestBed.createComponent(ShowDetailsComponent);
-    const component = fixture.componentInstance;
-    expect(component.ngOnInit());
-    expect(component.ngOnDestroy());
+    let showInfo = {
+      id: 139,
+      url: 'https://www.tvmaze.com/shows/139/girls',
+      name: 'Girls',
+      type: 'Scripted',
+      language: 'English',
+      genres: ['Drama', 'Romance'],
+      status: 'Ended',
+      runtime: 30,
+      averageRuntime: 30,
+      premiered: '2012-04-15',
+      officialSite: 'http://www.hbo.com/girls',
+      schedule: {
+        time: '22:00',
+        days: ['Sunday'],
+      },
+      rating: {
+        average: 6.6,
+      },
+      weight: 95,
+      network: {
+        id: 8,
+        name: 'HBO',
+        country: {
+          name: 'United States',
+          code: 'US',
+          timezone: 'America/New_York',
+        },
+      },
+      externals: {
+        tvrage: 30124,
+        thetvdb: 220411,
+        imdb: 'tt1723816',
+      },
+      image: {
+        medium:
+          'https://static.tvmaze.com/uploads/images/medium_portrait/31/78286.jpg',
+        original:
+          'https://static.tvmaze.com/uploads/images/original_untouched/31/78286.jpg',
+      },
+      summary:
+        '<p>This Emmy winning series is a comic look at the assorted humiliations and rare triumphs of a group of girls in their 20s.</p>',
+      updated: 1611310521,
+    };
+    expect(component.getCastInfo(showInfo));
     done();
   });
 });

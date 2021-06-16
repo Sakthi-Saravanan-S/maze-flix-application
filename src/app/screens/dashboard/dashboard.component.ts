@@ -40,7 +40,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     );
   }
   getDefaultTvShows(): void {
-    this.recordsSubscription = this._mazeFlixService.getTvShowsInfo().subscribe(
+    this.recordsSubscription = this._mazeFlixService.getDefaultTvShowsInfo().subscribe(
       (result: ShowListData[]) => {
         result.sort(
           (a: ShowListData, b: ShowListData) =>
