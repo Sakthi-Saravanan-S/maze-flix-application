@@ -13,16 +13,16 @@ export class MazeFlixService {
   private baseUrl: string = 'http://api.tvmaze.com/';
 
   getDefaultTvShowsInfo(): Observable<ShowListData[]> {
-    return this._http.get<ShowListData[]>(this.baseUrl + 'shows');
+    return this._http.get<ShowListData[]>(`${this.baseUrl}shows`);
   }
   getRequestedShowInfo(showName: string): Observable<SearchListData[]> {
     return this._http.get<SearchListData[]>(
-      this.baseUrl + 'search/shows?q=' + showName
+      `${this.baseUrl}search/shows?q=${showName}`
     );
   }
   getCastInfo(showId: number): Observable<CastListData[]> {
     return this._http.get<CastListData[]>(
-      this.baseUrl + 'shows/' + showId + '/cast'
+      `${this.baseUrl}shows/${showId}/cast`
     );
   }
 }

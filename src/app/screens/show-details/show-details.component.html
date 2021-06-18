@@ -1,4 +1,4 @@
-<app-header></app-header>
+<app-header (onShowSearched)="getRequestedShowDetails($event)"></app-header>
 <div class="details-container container-fluid">
   <div class="image-container">
     <img [src]="showDetail?.image?.original" />
@@ -8,8 +8,8 @@
   <div class="details-section">
     <h2>{{ showDetail?.name }}</h2>
     <div class="show-info-1">
-      <span>IMDb&nbsp;{{ showDetail?.rating?.average }}</span>
-      <span>{{ showDetail?.runtime }}&nbsp;Min</span>
+      <span>IMDb {{ showDetail?.rating?.average }}</span>
+      <span>{{ showDetail?.runtime }} Min</span>
       <span>{{ showDetail?.premiered | date: "yyyy" }}</span>
     </div>
     <div class="text-justify" [innerHTML]="showDetail?.summary"></div>

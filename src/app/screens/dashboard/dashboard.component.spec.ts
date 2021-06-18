@@ -1,22 +1,39 @@
 import { HttpClient, HttpHandler } from '@angular/common/http';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import {
+  ComponentFixture,
+  fakeAsync,
+  TestBed,
+  tick,
+} from '@angular/core/testing';
+import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
+import { of } from 'rxjs';
+import { delay } from 'rxjs/operators';
 import { MazeFlixConstants } from 'src/app/constants/maze-flix.constants';
 import { ShowListData } from 'src/app/model/show-list-data.model';
 import { MazeFlixService } from 'src/app/service/maze-flix.service';
-
 import { DashboardComponent } from './dashboard.component';
 
 describe('DashboardComponent', () => {
   let component: DashboardComponent;
   let fixture: ComponentFixture<DashboardComponent>;
-  let service: MazeFlixService;
-  let httpCLient: HttpClient;
+  let showList: ShowListData[];
+  let mockMazeFlixService: MazeFlixService;
+  let routerSpy = { navigateByUrl: jasmine.createSpy('navigateByUrl') };
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [RouterTestingModule],
       declarations: [DashboardComponent],
-      providers: [HttpClient, HttpHandler, MazeFlixConstants, MazeFlixService],
+      providers: [
+        HttpClient,
+        HttpHandler,
+        MazeFlixConstants,
+        MazeFlixService,
+        { provide: Router, useValue: routerSpy },
+      ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
   });
 
@@ -24,16 +41,8 @@ describe('DashboardComponent', () => {
     fixture = TestBed.createComponent(DashboardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-
-  it('should generate show by genres', () => {
-    const fixture = TestBed.createComponent(DashboardComponent);
-    const component = fixture.componentInstance;
-    let showList: ShowListData[] = [
+    mockMazeFlixService = TestBed.inject(MazeFlixService);
+    showList = [
       {
         id: 250,
         url: 'https://www.tvmaze.com/shows/250/kirby-buckets',
@@ -255,6 +264,13 @@ describe('DashboardComponent', () => {
         updated: 1574298803,
       },
     ];
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+
+  it('should generate show by genres', () => {
     expect(component.generateShowsByGeneres(showList, 'Comedy')).toEqual([
       {
         id: 250,
@@ -303,10 +319,23 @@ describe('DashboardComponent', () => {
     ]);
   });
 
-  it('should Should get data from API', (done: DoneFn) => {
-    const fixture = TestBed.createComponent(DashboardComponent);
-    const component = fixture.componentInstance;
-    expect(component.getDefaultTvShows());
-    done();
+  it('should call data from API and update default show list information', fakeAsync(() => {
+    fixture = TestBed.createComponent(DashboardComponent);
+    component = fixture.componentInstance;
+    spyOn(mockMazeFlixService, 'getDefaultTvShowsInfo').and.callFake(() => {
+      return of(showList).pipe(delay(500));
+    });
+    component.ngOnInit();
+    tick(500);
+    expect(component.defaultShowList.length).toBeGreaterThan(0);
+  }));
+
+  it(`should navigate to search result page`, () => {
+    fixture = TestBed.createComponent(DashboardComponent);
+    component = fixture.componentInstance;
+    component.getRequestedShowDetails('Breaking');
+    expect(routerSpy.navigateByUrl).toHaveBeenCalledWith('/search-results', {
+      state: { showName: 'Breaking' },
+    });
   });
 });

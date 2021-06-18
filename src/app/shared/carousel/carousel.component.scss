@@ -5,6 +5,7 @@
     padding: 1.5rem 4rem;
     font-weight: 600;
     font-size: x-large;
+    z-index: 9999;
   }
   .slider {
     width: 100%;
@@ -124,7 +125,8 @@
     left: 0px;
   }
 }
-.carousal-container:hover .slider-btn,
 .carousal-container:hover {
-  visibility: visible;
+  .slider-btn {
+    visibility: visible;
+  }
 }

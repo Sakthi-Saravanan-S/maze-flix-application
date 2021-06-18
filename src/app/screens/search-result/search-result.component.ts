@@ -1,7 +1,6 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { MazeFlixConstants } from 'src/app/constants/maze-flix.constants';
 import { SearchListData } from 'src/app/model/search-list-data.model';
 import { ShowListData } from 'src/app/model/show-list-data.model';
 import { MazeFlixService } from 'src/app/service/maze-flix.service';
@@ -21,14 +20,12 @@ export class SearchResultComponent implements OnInit, OnDestroy {
   constructor(
     private _activatedRoute: ActivatedRoute,
     private _router: Router,
-    private _mazeFlixService: MazeFlixService,
-    private _mazeFlixConstants: MazeFlixConstants
+    private _mazeFlixService: MazeFlixService
   ) {}
   onTvShowClick(showInfo: ShowListData): void {
-    if (showInfo)
-      this._router.navigateByUrl('/show-details', {
-        state: { showInfo: showInfo },
-      });
+    this._router.navigateByUrl('/show-details', {
+      state: { showInfo: showInfo },
+    });
   }
   getRequestedShowDetails(
     showName: string,
@@ -53,11 +50,17 @@ export class SearchResultComponent implements OnInit, OnDestroy {
       if (navData && navData.showName) {
         this.searchedShowName = navData.showName;
         this.getRequestedShowDetails(navData.showName, true);
-      } else this._router.navigate(['']);
+      } else {
+        this._router.navigate(['']);
+      }
     });
   }
   ngOnDestroy(): void {
-    if (this.routeSubscription) this.routeSubscription.unsubscribe();
-    if (this.showSearchSubscription) this.showSearchSubscription.unsubscribe();
+    if (this.routeSubscription) {
+      this.routeSubscription.unsubscribe();
+    }
+    if (this.showSearchSubscription) {
+      this.showSearchSubscription.unsubscribe();
+    }
   }
 }

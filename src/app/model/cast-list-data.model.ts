@@ -11,7 +11,6 @@ export interface Person {
   name: string;
   country: Country;
   birthday: string;
-  deathday: any;
   gender: string;
   image: Image;
 }

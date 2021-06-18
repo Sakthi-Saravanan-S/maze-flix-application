@@ -20,7 +20,7 @@ import { SearchResultComponent } from './screens/search-result/search-result.com
     DashboardComponent,
     ShowDetailsComponent,
     CarouselComponent,
-    SearchResultComponent
+    SearchResultComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,6 +30,7 @@ import { SearchResultComponent } from './screens/search-result/search-result.com
     ReactiveFormsModule,
     HttpClientModule,
   ],
+  exports: [HeaderComponent, CarouselComponent],
   providers: [MazeFlixConstants, MazeFlixService],
   bootstrap: [AppComponent],
 })

@@ -1,6 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import {
-  AbstractControl,
   FormBuilder,
   FormControl,
   FormGroup,
@@ -37,9 +36,6 @@ export class HeaderComponent implements OnInit {
     if (this.showSearchForm.valid) {
       this.isFormHasError = false;
       const showName = this.showSearchForm.getRawValue().showName;
-      this._router.navigateByUrl('/search-results', {
-        state: { showName: showName },
-      });
       this.onShowSearched.emit(showName);
     } else {
       this.isFormHasError = true;
