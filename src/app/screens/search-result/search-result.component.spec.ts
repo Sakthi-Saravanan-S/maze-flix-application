@@ -1,11 +1,11 @@
 import { HttpClient, HttpHandler } from '@angular/common/http';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import {
   ComponentFixture,
   fakeAsync,
   TestBed,
   tick,
 } from '@angular/core/testing';
+import { ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
@@ -14,6 +14,7 @@ import { MazeFlixConstants } from 'src/app/constants/maze-flix.constants';
 import { SearchListData } from 'src/app/model/search-list-data.model';
 import { ShowListData } from 'src/app/model/show-list-data.model';
 import { MazeFlixService } from 'src/app/service/maze-flix.service';
+import { HeaderComponent } from 'src/app/shared/header/header.component';
 import { SearchResultComponent } from './search-result.component';
 
 describe('SearchResultComponent', () => {
@@ -26,7 +27,6 @@ describe('SearchResultComponent', () => {
     navigateByUrl: jasmine.createSpy('navigateByUrl'),
     navigate: jasmine.createSpy('navigate'),
   };
-  let activatedRoute;
   const activatedRouteStub = {
     paramMap: of({
       navData: window.history.state,
@@ -34,8 +34,8 @@ describe('SearchResultComponent', () => {
   };
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RouterTestingModule],
-      declarations: [SearchResultComponent],
+      imports: [RouterTestingModule, ReactiveFormsModule],
+      declarations: [SearchResultComponent, HeaderComponent],
       providers: [
         HttpClient,
         HttpHandler,
@@ -47,7 +47,6 @@ describe('SearchResultComponent', () => {
           useValue: activatedRouteStub,
         },
       ],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
   });
 
@@ -108,14 +107,25 @@ describe('SearchResultComponent', () => {
     ];
     window.history.pushState({ showName: showInfo.name }, '', '');
     fixture.detectChanges();
-    activatedRoute = TestBed.inject(ActivatedRoute);
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should call data from API and update search list information', fakeAsync(() => {
+  it('should call API and found no matching records found', fakeAsync(() => {
+    fixture = TestBed.createComponent(SearchResultComponent);
+    component = fixture.componentInstance;
+    let emptyRecord: SearchListData[] = [];
+    spyOn(mockMazeFlixService, 'getRequestedShowInfo').and.callFake(() => {
+      return of(emptyRecord).pipe(delay(500));
+    });
+    component.getRequestedShowDetails('dsadsadsadsa');
+    tick(500);
+    expect(component.searchResultList.length).toBe(0);
+  }));
+
+  it('should call API and update search list information', fakeAsync(() => {
     fixture = TestBed.createComponent(SearchResultComponent);
     component = fixture.componentInstance;
     spyOn(mockMazeFlixService, 'getRequestedShowInfo').and.callFake(() => {
@@ -126,17 +136,29 @@ describe('SearchResultComponent', () => {
     expect(component.searchResultList.length).toBeGreaterThan(0);
   }));
 
-  it('should update cast list after received from API', fakeAsync(() => {
-    component.getRequestedShowDetails(showInfo.name);
-    expect(component.searchResultList.length).toBeDefined();
+  it('should call API and set show name in child component', fakeAsync(() => {
+    fixture = TestBed.createComponent(SearchResultComponent);
+    component = fixture.componentInstance;
+    component.headerComponent =
+      TestBed.createComponent(HeaderComponent).componentInstance;
+    component.headerComponent.ngOnInit();
+    spyOn(mockMazeFlixService, 'getRequestedShowInfo').and.callFake(() => {
+      return of(searchList).pipe(delay(500));
+    });
+    component.getRequestedShowDetails(showInfo.name, true);
+    tick(500);
+    expect(component.searchResultList.length).toBeGreaterThan(0);
   }));
 
   it(`should navigate to show details page`, () => {
     fixture = TestBed.createComponent(SearchResultComponent);
     component = fixture.componentInstance;
     component.onTvShowClick(showInfo);
-    expect(routerSpy.navigateByUrl).toHaveBeenCalledWith('/show-details', {
-      state: { showInfo: showInfo },
-    });
+    expect(routerSpy.navigateByUrl).toHaveBeenCalledWith(
+      `/show-details/${showInfo.id}`,
+      {
+        state: { showInfo: showInfo },
+      }
+    );
   });
 });

@@ -1,11 +1,11 @@
 import { HttpClient, HttpHandler } from '@angular/common/http';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import {
   ComponentFixture,
   fakeAsync,
   TestBed,
   tick,
 } from '@angular/core/testing';
+import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
@@ -13,6 +13,8 @@ import { delay } from 'rxjs/operators';
 import { MazeFlixConstants } from 'src/app/constants/maze-flix.constants';
 import { ShowListData } from 'src/app/model/show-list-data.model';
 import { MazeFlixService } from 'src/app/service/maze-flix.service';
+import { CarouselComponent } from 'src/app/shared/carousel/carousel.component';
+import { HeaderComponent } from 'src/app/shared/header/header.component';
 import { DashboardComponent } from './dashboard.component';
 
 describe('DashboardComponent', () => {
@@ -24,16 +26,16 @@ describe('DashboardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RouterTestingModule],
-      declarations: [DashboardComponent],
+      imports: [RouterTestingModule, ReactiveFormsModule],
+      declarations: [DashboardComponent, CarouselComponent, HeaderComponent],
       providers: [
         HttpClient,
         HttpHandler,
         MazeFlixConstants,
         MazeFlixService,
+        FormBuilder,
         { provide: Router, useValue: routerSpy },
       ],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
   });
 
@@ -319,9 +321,24 @@ describe('DashboardComponent', () => {
     ]);
   });
 
+  it('should update genre title when genre is changed', () => {
+    fixture = TestBed.createComponent(DashboardComponent);
+    component = fixture.componentInstance;
+    component.selectedGenreCarousel =
+      TestBed.createComponent(CarouselComponent).componentInstance;
+    const prevGenreTitle = component.genreTitle;
+    component.onGenreListChange('Drama');
+    const updGenreTitle = component.genreTitle;
+    expect(prevGenreTitle).not.toEqual(updGenreTitle);
+  });
+
   it('should call data from API and update default show list information', fakeAsync(() => {
     fixture = TestBed.createComponent(DashboardComponent);
     component = fixture.componentInstance;
+    component.topRatedCarousel =
+      TestBed.createComponent(CarouselComponent).componentInstance;
+    component.selectedGenreCarousel =
+      TestBed.createComponent(CarouselComponent).componentInstance;
     spyOn(mockMazeFlixService, 'getDefaultTvShowsInfo').and.callFake(() => {
       return of(showList).pipe(delay(500));
     });
@@ -330,7 +347,7 @@ describe('DashboardComponent', () => {
     expect(component.defaultShowList.length).toBeGreaterThan(0);
   }));
 
-  it(`should navigate to search result page`, () => {
+  it('should navigate to search result page', () => {
     fixture = TestBed.createComponent(DashboardComponent);
     component = fixture.componentInstance;
     component.getRequestedShowDetails('Breaking');

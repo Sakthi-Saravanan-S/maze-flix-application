@@ -1,7 +1,5 @@
 import { HttpClient, HttpHandler } from '@angular/common/http';
-import { inject, TestBed } from '@angular/core/testing';
-import { Observable } from 'rxjs';
-
+import { TestBed } from '@angular/core/testing';
 import { MazeFlixService } from './maze-flix.service';
 
 describe('MazeFlixService', () => {

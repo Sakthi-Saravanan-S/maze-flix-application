@@ -10,7 +10,7 @@ const routes: Routes = [
     component: DashboardComponent,
   },
   {
-    path: 'show-details',
+    path: 'show-details/:id',
     component: ShowDetailsComponent,
   },
   {

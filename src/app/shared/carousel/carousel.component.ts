@@ -17,7 +17,7 @@ export class CarouselComponent implements OnInit {
   ) {}
   showList: ShowListData[] = [];
   onTvShowClick(showInfo: ShowListData): void {
-    this._router.navigateByUrl('/show-details', {
+    this._router.navigateByUrl(`/show-details/${showInfo.id}`, {
       state: { showInfo: showInfo },
     });
   }

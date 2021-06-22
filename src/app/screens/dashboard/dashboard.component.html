@@ -3,48 +3,27 @@
   <app-carousel
     #topRatedCarousel
     carouselTitle="Top Rated TV Shows and Movies"
-    carouselId="0"
+    [carouselId]="mazeFlixConstants.NUMBER_0"
   ></app-carousel>
 </div>
-<div class="carousel-section secondary-bg-color">
+<div class="row justify-content-center carousel-section secondary-bg-color">
+  <div class="content-padding col-10 col-sm-6 col-md-4">
+    <select (change)="onGenreListChange($event.target.value)" class="form-select btn-secondary">
+      <option
+        *ngFor="let genre of genreList; let i = index; let first = first"
+        [selected]="first"
+        [value]="genre"
+      >
+        {{ genre }}
+      </option>
+    </select>
+  </div>
+  <div class="content-padding col-10 text-center text-danger">
+    <label>Select genre from the dropdown to update the list below</label>
+  </div>
   <app-carousel
-    #genre1Carousel
-    carouselTitle="Science-Fiction"
-    carouselId="1"
-  ></app-carousel>
-</div>
-<div class="carousel-section">
-  <app-carousel
-    #genre2Carousel
-    carouselTitle="Mystery"
-    carouselId="2"
-  ></app-carousel>
-</div>
-<div class="carousel-section secondary-bg-color">
-  <app-carousel
-    #genre3Carousel
-    carouselTitle="Crime"
-    carouselId="3"
-  ></app-carousel>
-</div>
-<div class="carousel-section">
-  <app-carousel
-    #genre4Carousel
-    carouselTitle="Action"
-    carouselId="4"
-  ></app-carousel>
-</div>
-<div class="carousel-section secondary-bg-color">
-  <app-carousel
-    #genre5Carousel
-    carouselTitle="Comedy"
-    carouselId="5"
-  ></app-carousel>
-</div>
-<div class="carousel-section">
-  <app-carousel
-    #genre6Carousel
-    carouselTitle="Family"
-    carouselId="6"
+    #selectedGenreCarousel
+    [carouselTitle]="genreTitle"
+    [carouselId]="mazeFlixConstants.NUMBER_1"
   ></app-carousel>
 </div>

@@ -53,6 +53,8 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Architectural decisions used in application
 
-1. Bootstrap 5 - Used for designing layout and add icons.
+1. Angular 11.2.0 - Used for developing MazeFlix single page web application (SPA).
+
+2. Bootstrap 5 - Used for designing layout and add icons.
 
 

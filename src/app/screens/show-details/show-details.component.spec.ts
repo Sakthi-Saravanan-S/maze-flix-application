@@ -1,12 +1,10 @@
 import { HttpClient, HttpHandler } from '@angular/common/http';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import {
-  async,
   ComponentFixture,
   fakeAsync,
   TestBed,
   tick,
-  waitForAsync,
 } from '@angular/core/testing';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -28,7 +26,6 @@ describe('ShowDetailsComponent', () => {
     navigateByUrl: jasmine.createSpy('navigateByUrl'),
     navigate: jasmine.createSpy('navigate'),
   };
-  let activatedRoute;
   const activatedRouteStub = {
     paramMap: of({
       navData: window.history.state,
@@ -139,7 +136,6 @@ describe('ShowDetailsComponent', () => {
     mockMazeFlixService = TestBed.inject(MazeFlixService);
     window.history.pushState({ showInfo: showInfo }, '', '');
     fixture.detectChanges();
-    activatedRoute = TestBed.inject(ActivatedRoute);
   });
 
   it('should create', () => {

@@ -1,5 +1,5 @@
 <nav class="container-fluid">
-  <div class="row bg-dark text-white">
+  <div class="row bg-dark">
     <div class="col-12 col-md-3 align-self-center text-center content-padding">
       <label (click)="onMazeLogoClick()" class="maze-flix-logo"
         >MAZE FLIX</label
@@ -13,9 +13,6 @@
       >
         <div class="col-10 col-md-8 col-lg-6">
           <div class="input-group">
-            <span class="input-group-text">
-              <i class="bi bi-search"></i>
-            </span>
             <input
               type="text"
               id="search"
@@ -24,7 +21,11 @@
                 'is-invalid':
                   isFormHasError && showSearchForm.controls.showName.errors,
                 'invalid-show':
-                  isFormHasError && showSearchForm.controls.showName.errors
+                  isFormHasError && showSearchForm.controls.showName.errors,
+                'btn-outline-secondary':
+                  !isFormHasError || !showSearchForm.controls.showName.errors,
+                'valid-input':
+                  !isFormHasError || !showSearchForm.controls.showName.errors
               }"
               formControlName="showName"
               [placeholder]="
@@ -36,21 +37,21 @@
               maxlength="30"
               required
             />
+            <button
+              [ngClass]="{
+                'btn-outline-danger':
+                  isFormHasError && showSearchForm.controls.showName.errors
+              }"
+              class="btn btn-outline-secondary"
+              type="submit"
+            >
+              <i class="bi bi-search"></i>
+            </button>
           </div>
-        </div>
-        <div class="col-2">
-          <button type="submit" class="btn btn-outline-danger">Go</button>
         </div>
       </form>
     </div>
-    <div
-      class="
-        col-12 col-sm-4 col-md-3
-        content-padding
-        text-center
-        align-self-center
-      "
-    >
+    <div class="col-12 col-sm-4 col-md-3 content-padding text-right align-self-center">
       <i class="bi bi-person-circle guest-icon"></i>
       <span>
         <label class="user-name">Guest</label>

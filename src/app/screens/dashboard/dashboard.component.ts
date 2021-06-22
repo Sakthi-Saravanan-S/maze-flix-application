@@ -13,27 +13,22 @@ import { CarouselComponent } from 'src/app/shared/carousel/carousel.component';
 })
 export class DashboardComponent implements OnInit, OnDestroy {
   @ViewChild('topRatedCarousel') topRatedCarousel: CarouselComponent;
-  @ViewChild('genre1Carousel') genre1Carousel: CarouselComponent;
-  @ViewChild('genre2Carousel') genre2Carousel: CarouselComponent;
-  @ViewChild('genre3Carousel') genre3Carousel: CarouselComponent;
-  @ViewChild('genre4Carousel') genre4Carousel: CarouselComponent;
-  @ViewChild('genre5Carousel') genre5Carousel: CarouselComponent;
-  @ViewChild('genre6Carousel') genre6Carousel: CarouselComponent;
+  @ViewChild('selectedGenreCarousel') selectedGenreCarousel: CarouselComponent;
   recordsSubscription: Subscription;
-  genreList: string[] = [
-    'Science-Fiction',
-    'Mystery',
-    'Crime',
-    'Action',
-    'Comedy',
-    'Family',
-  ];
+  genreList: string[] = [];
+  genreTitle: string = '';
   defaultShowList: ShowListData[] = [];
   constructor(
     private _mazeFlixService: MazeFlixService,
-    private _mazeFlixConstants: MazeFlixConstants,
-    private _router: Router
+    private _router: Router,
+    public mazeFlixConstants: MazeFlixConstants
   ) {}
+  onGenreListChange(genre: string): void {
+    this.genreTitle = genre;
+    this.selectedGenreCarousel.setCarouselInfo(
+      this.generateShowsByGeneres(this.defaultShowList, this.genreTitle)
+    );
+  }
   getRequestedShowDetails(showName: string): void {
     this._router.navigateByUrl('/search-results', {
       state: { showName: showName },
@@ -51,11 +46,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
       return isGenreFounded;
     });
     return updatedShowList.slice(
-      this._mazeFlixConstants.NUMBER_0,
-      this._mazeFlixConstants.SLIDER_LIMIT
+      this.mazeFlixConstants.NUMBER_0,
+      this.mazeFlixConstants.SLIDER_LIMIT
     );
   }
   ngOnInit(): void {
+    this.genreList = [];
+    this.genreTitle = '';
     this.recordsSubscription = this._mazeFlixService
       .getDefaultTvShowsInfo()
       .subscribe(
@@ -65,21 +62,21 @@ export class DashboardComponent implements OnInit, OnDestroy {
               b.rating.average - a.rating.average
           );
           const topRatedShows = result.slice(
-            this._mazeFlixConstants.NUMBER_0,
-            this._mazeFlixConstants.SLIDER_LIMIT
+            this.mazeFlixConstants.NUMBER_0,
+            this.mazeFlixConstants.SLIDER_LIMIT
           );
-          if (this.topRatedCarousel) {
-            this.genreList.forEach((genre, index) => {
-              const childName = `genre${index + 1}Carousel`;
-              this[childName].setCarouselInfo(
-                this.generateShowsByGeneres(result, genre)
-              );
-              this.genre1Carousel.setCarouselInfo(
-                this.generateShowsByGeneres(result, genre)
-              );
+          result.forEach((showInfo) => {
+            showInfo.genres.forEach((genreInfo) => {
+              if (this.genreList.indexOf(genreInfo) === -1) {
+                this.genreList.push(genreInfo);
+              }
             });
-            this.topRatedCarousel.setCarouselInfo(topRatedShows);
-          }
+          });
+          this.genreTitle = this.genreList[this.mazeFlixConstants.NUMBER_0];
+          this.selectedGenreCarousel.setCarouselInfo(
+            this.generateShowsByGeneres(result, this.genreTitle)
+          );
+          this.topRatedCarousel.setCarouselInfo(topRatedShows);
           this.defaultShowList = [];
           this.defaultShowList = result;
         },

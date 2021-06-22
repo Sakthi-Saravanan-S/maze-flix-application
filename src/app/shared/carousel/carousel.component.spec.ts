@@ -82,9 +82,12 @@ describe('CarouselComponent', () => {
     fixture = TestBed.createComponent(CarouselComponent);
     component = fixture.componentInstance;
     component.onTvShowClick(showInfo);
-    expect(routerSpy.navigateByUrl).toHaveBeenCalledWith('/show-details', {
-      state: { showInfo: showInfo },
-    });
+    expect(routerSpy.navigateByUrl).toHaveBeenCalledWith(
+      `/show-details/${showInfo.id}`,
+      {
+        state: { showInfo: showInfo },
+      }
+    );
   });
 
   it('Set carousel info should update show list', () => {

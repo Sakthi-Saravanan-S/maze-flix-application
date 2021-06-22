@@ -5,7 +5,12 @@
 <div class="search-result-container container-fluid">
   <div class="row">
     <div class="result-title col-12">
-      <label>Results for "{{ searchedShowName }}"</label>
+      <label *ngIf="this.searchedShow.isRecordFound"
+        >Results for "{{ this.searchedShow.name }}"</label
+      >
+      <label *ngIf="!this.searchedShow.isRecordFound"
+        >No matching records found for "{{ this.searchedShow.name }}"</label
+      >
     </div>
   </div>
   <div class="row">

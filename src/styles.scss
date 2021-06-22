@@ -18,3 +18,6 @@ body {
 .text-right {
   text-align: right !important;
 }
+.content-padding {
+  padding: calc(var(--bs-gutter-x) / 2);
+}

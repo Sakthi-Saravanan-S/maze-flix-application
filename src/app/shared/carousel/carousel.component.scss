@@ -5,7 +5,7 @@
     padding: 1.5rem 4rem;
     font-weight: 600;
     font-size: x-large;
-    z-index: 9999;
+    z-index: 99;
   }
   .slider {
     width: 100%;
@@ -94,10 +94,16 @@
       .show-info {
         width: 45vw;
       }
+      .description{
+        padding: 25px 10px;
+      }
     }
     @media only screen and (max-width: 576px) {
       .show-info {
         width: 80vw;
+      }
+      .description{
+        padding: 50px 10px;
       }
     }
   }

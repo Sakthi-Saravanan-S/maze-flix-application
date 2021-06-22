@@ -15,6 +15,10 @@ export class SearchResultComponent implements OnInit, OnDestroy {
   @ViewChild('headerComponent') headerComponent: HeaderComponent;
   routeSubscription: Subscription;
   showSearchSubscription: Subscription;
+  searchedShow: { [key: string]: string | boolean } = {
+    name: '',
+    isRecordFound: true,
+  };
   searchedShowName: string = '';
   searchResultList: SearchListData[] = [];
   constructor(
@@ -23,7 +27,7 @@ export class SearchResultComponent implements OnInit, OnDestroy {
     private _mazeFlixService: MazeFlixService
   ) {}
   onTvShowClick(showInfo: ShowListData): void {
-    this._router.navigateByUrl('/show-details', {
+    this._router.navigateByUrl(`/show-details/${showInfo.id}`, {
       state: { showInfo: showInfo },
     });
   }
@@ -31,24 +35,30 @@ export class SearchResultComponent implements OnInit, OnDestroy {
     showName: string,
     isNavigatedFromRouter?: boolean
   ): void {
-    this.searchedShowName = showName;
+    this.searchedShow.name = showName;
     this.showSearchSubscription = this._mazeFlixService
       .getRequestedShowInfo(showName)
       .subscribe(
         (result: SearchListData[]) => {
           this.searchResultList = [];
-          this.searchResultList = JSON.parse(JSON.stringify(result));
+          this.searchedShow.isRecordFound = false;
+          if (result && result.length) {
+            this.searchResultList = JSON.parse(JSON.stringify(result));
+            this.searchedShow.isRecordFound = true;
+          }
           if (isNavigatedFromRouter)
-            this.headerComponent.setFormValue(this.searchedShowName);
+            this.headerComponent.setFormValue(showName);
         },
-        () => {}
+        () => {
+          this.searchedShow.isRecordFound = false;
+        }
       );
   }
   ngOnInit(): void {
     this.routeSubscription = this._activatedRoute.paramMap.subscribe(() => {
       const navData = window.history.state;
       if (navData && navData.showName) {
-        this.searchedShowName = navData.showName;
+        this.searchedShow.name = navData.showName;
         this.getRequestedShowDetails(navData.showName, true);
       } else {
         this._router.navigate(['']);
