@@ -14,14 +14,12 @@
 }
 .invalid-show::placeholder {
   color: #dc3545;
-  opacity: 1; /* Firefox */
+  opacity: 1;
 }
 .invalid-show:-ms-input-placeholder {
-  /* Internet Explorer 10-11 */
   color: #dc3545;
 }
 .invalid-show::-ms-input-placeholder {
-  /* Microsoft Edge */
   color: #dc3545;
 }
 .input-group {
@@ -31,7 +29,7 @@
     background-color: #141414;
     color: #fff;
   }
-  .valid-input{
+  .valid-input {
     border-color: #6c757d;
   }
 }
@@ -39,7 +37,7 @@
   .text-right {
     text-align: center !important;
   }
-  .justify-content-end{
+  .justify-content-end {
     justify-content: center !important;
   }
 }

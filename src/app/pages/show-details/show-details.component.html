@@ -7,10 +7,16 @@
   </div>
   <div class="details-section">
     <h2>{{ showDetail?.name }}</h2>
-    <div class="show-info-1">
-      <span>IMDb {{ showDetail?.rating?.average }}</span>
-      <span>{{ showDetail?.runtime }} Min</span>
-      <span>{{ showDetail?.premiered | date: "yyyy" }}</span>
+    <div class="row show-info-1">
+      <div class="col-4 col-sm-3">
+        <label>IMDb {{ showDetail?.rating?.average }}</label>
+      </div>
+      <div class="col-4 col-sm-3">
+        <label>{{ showDetail?.runtime }} Min</label>
+      </div>
+      <div class="col-4 col-sm-3">
+        <label>{{ showDetail?.premiered | date: "yyyy" }}</label>
+      </div>
     </div>
     <div class="text-justify" [innerHTML]="showDetail?.summary"></div>
     <div class="icons-section">
@@ -22,9 +28,6 @@
       </span>
       <span>
         <i class="bi bi-hand-thumbs-down"></i>
-      </span>
-      <span>
-        <i class="bi bi-plus-circle"></i>
       </span>
       <span>
         <i class="bi bi-download"></i>

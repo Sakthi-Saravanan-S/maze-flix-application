@@ -1,12 +1,5 @@
-.carousal-container {
+.carousel-container {
   position: relative;
-  .carousel-title {
-    position: absolute;
-    padding: 1.5rem 4rem;
-    font-weight: 600;
-    font-size: x-large;
-    z-index: 99;
-  }
   .slider {
     width: 100%;
     overflow-x: scroll;
@@ -15,7 +8,7 @@
     scrollbar-width: none;
     white-space: nowrap;
     position: relative;
-    padding-top: 80px;
+    padding-top: 30px;
     padding-bottom: 30px;
     .show-info {
       width: 15.5vw;
@@ -112,12 +105,11 @@
     height: auto;
     border-radius: 5px;
     position: absolute;
-    bottom: 0;
     background-color: #0000004d;
     outline: none;
     border: none;
     color: #fff;
-    top: 80px;
+    top: 30px;
     bottom: 30px;
     z-index: 20;
     visibility: hidden;
@@ -131,7 +123,7 @@
     left: 0px;
   }
 }
-.carousal-container:hover {
+.carousel-container:hover {
   .slider-btn {
     visibility: visible;
   }

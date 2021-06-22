@@ -9,7 +9,6 @@ import { ShowListData } from 'src/app/model/show-list-data.model';
   styleUrls: ['./carousel.component.scss'],
 })
 export class CarouselComponent implements OnInit {
-  @Input() carouselTitle: string = '';
   @Input() carouselId: number = this.mazeFlixConstants.NUMBER_0;
   constructor(
     public mazeFlixConstants: MazeFlixConstants,

@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DashboardComponent } from './screens/dashboard/dashboard.component';
-import { ShowDetailsComponent } from './screens/show-details/show-details.component';
-import { SearchResultComponent } from './screens/search-result/search-result.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { ShowDetailsComponent } from './pages/show-details/show-details.component';
+import { SearchResultComponent } from './pages/search-result/search-result.component';
 
 const routes: Routes = [
   {

@@ -1,30 +1,14 @@
 # MazeFlix
+Maze flix is responsive single-page web application, which displays various TV shows based on their rating and genre. We can also search the TV show and able to see it in detail.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.0.
 
 ## Development server
-
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
 ## Running unit tests
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
 
 ## Steps to start the angular application
 
@@ -53,8 +37,8 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Architectural decisions used in application
 
-1. Angular 11.2.0 - Used for developing MazeFlix single page web application (SPA).
+1. Angular 11.2.0 - Angular is an application design framework and development platform for creating single-page application. Angular uses Typescript (A superset of Javascript) which helps debelopers to keep their code clean and understandable. Ivy renderer engine used to implement tree shaking mechanism and reduce the bundle size.
 
-2. Bootstrap 5 - Used for designing layout and add icons.
+2. Bootstrap 5 - Bootstrap is a consistent framework that supports major of all browsers, also having Responsive structures and styles.
 
 

@@ -22,9 +22,6 @@
     .show-info-1 {
       margin-bottom: 2rem;
       color: #c3c3c3cf;
-      span {
-        padding-right: 2rem;
-      }
     }
     .show-info-2 {
       dl {
@@ -65,12 +62,20 @@
     width: 45vw;
     height: 90vh;
   }
+  @media only screen and (max-width: 425px) {
+    .icons-section {
+      span {
+        padding: 0.5rem !important;
+      }
+    }
+  }
   @media only screen and (max-width: 768px) {
     img {
       width: 80vw;
     }
     .details-section {
       width: 100%;
+      padding: 1rem 2rem;
     }
   }
   @media only screen and (min-width: 769px) and (max-width: 992px) {

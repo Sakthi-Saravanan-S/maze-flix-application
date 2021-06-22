@@ -1,17 +1,24 @@
 <nav class="container-fluid">
   <div class="row bg-dark">
-    <div class="col-12 col-md-3 align-self-center text-center content-padding">
+    <div
+      class="
+        col-12 col-sm-4 col-md-3
+        align-self-center
+        text-center
+        content-padding
+      "
+    >
       <label (click)="onMazeLogoClick()" class="maze-flix-logo"
         >MAZE FLIX</label
       >
     </div>
-    <div class="col-12 col-sm-8 col-md-6 content-padding">
+    <div class="col-12 col-sm-8 col-md-9 content-padding">
       <form
         [formGroup]="showSearchForm"
         class="row justify-content-end"
         (ngSubmit)="onSubmit()"
       >
-        <div class="col-10 col-md-8 col-lg-6">
+        <div class="col-8 col-md-6 col-lg-4">
           <div class="input-group">
             <input
               type="text"
@@ -49,14 +56,15 @@
             </button>
           </div>
         </div>
+        <div
+          class="col-4 col-md-3 text-right align-self-center"
+        >
+          <i class="bi bi-person-circle guest-icon"></i>
+          <span>
+            <label class="user-name">Guest</label>
+          </span>
+        </div>
       </form>
-    </div>
-    <div class="col-12 col-sm-4 col-md-3 content-padding text-right align-self-center">
-      <i class="bi bi-person-circle guest-icon"></i>
-      <span>
-        <label class="user-name">Guest</label>
-        <i class="bi bi-caret-down"></i>
-      </span>
     </div>
   </div>
 </nav>

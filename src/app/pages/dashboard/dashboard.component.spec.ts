@@ -13,8 +13,8 @@ import { delay } from 'rxjs/operators';
 import { MazeFlixConstants } from 'src/app/constants/maze-flix.constants';
 import { ShowListData } from 'src/app/model/show-list-data.model';
 import { MazeFlixService } from 'src/app/service/maze-flix.service';
-import { CarouselComponent } from 'src/app/shared/carousel/carousel.component';
-import { HeaderComponent } from 'src/app/shared/header/header.component';
+import { CarouselComponent } from 'src/app/shared-components/carousel/carousel.component';
+import { HeaderComponent } from 'src/app/shared-components/header/header.component';
 import { DashboardComponent } from './dashboard.component';
 
 describe('DashboardComponent', () => {

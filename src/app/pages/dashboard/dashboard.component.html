@@ -1,14 +1,17 @@
 <app-header (onShowSearched)="getRequestedShowDetails($event)"></app-header>
 <div class="carousel-section">
+  <div class="carousel-title">Top Rated TV Shows</div>
   <app-carousel
     #topRatedCarousel
-    carouselTitle="Top Rated TV Shows and Movies"
     [carouselId]="mazeFlixConstants.NUMBER_0"
   ></app-carousel>
 </div>
 <div class="row justify-content-center carousel-section secondary-bg-color">
-  <div class="content-padding col-10 col-sm-6 col-md-4">
-    <select (change)="onGenreListChange($event.target.value)" class="form-select btn-secondary">
+  <div class="content-padding col-10 col-sm-6 col-md-4 col-lg-3">
+    <select
+      (change)="onGenreListChange($event.target.value)"
+      class="form-select btn-secondary"
+    >
       <option
         *ngFor="let genre of genreList; let i = index; let first = first"
         [selected]="first"
@@ -21,9 +24,9 @@
   <div class="content-padding col-10 text-center text-danger">
     <label>Select genre from the dropdown to update the list below</label>
   </div>
+  <div class="carousel-title">{{ genreTitle }}</div>
   <app-carousel
     #selectedGenreCarousel
-    [carouselTitle]="genreTitle"
     [carouselId]="mazeFlixConstants.NUMBER_1"
   ></app-carousel>
 </div>
